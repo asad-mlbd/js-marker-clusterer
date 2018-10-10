@@ -859,6 +859,9 @@ Cluster.prototype.addMarker = function(marker) {
 
   marker.isAdded = true;
   this.markers_.push(marker);
+  this.isVarified = this.isVarified || /verified/.test(marker.icon);
+  this.isBuzzed = this.isBuzzed || /buzzed/.test(marker.icon);
+
 
   var len = this.markers_.length;
   if (len < this.minClusterSize_ && marker.getMap() != this.map_) {
@@ -1207,6 +1210,13 @@ ClusterIcon.prototype.useStyle = function() {
   this.textSize_ = style['textSize'];
   this.backgroundPosition_ = style['backgroundPosition'];
   this.iconAnchor_ = style['iconAnchor'];
+
+  /* cluster url hack for verified cluster */
+  if(this.cluster_.isVarified) {
+    this.url_ = style['url'].replace(/balloon([0-9])/, 'verified-balloon$1');
+  } else if(this.cluster_.isBuzzed) { /* cluster url hack for buzzed cluster */
+    this.url_ = style['url'].replace(/balloon([0-9])/, 'buzzed-balloon$1');
+  }
 };
 
 
