@@ -1211,11 +1211,11 @@ ClusterIcon.prototype.useStyle = function() {
   this.backgroundPosition_ = style['backgroundPosition'];
   this.iconAnchor_ = style['iconAnchor'];
 
-  /* cluster url hack for verified cluster */
+/* cluster url hack for verified cluster */
   if(this.cluster_.isVarified) {
-    this.url_ = style['url'].replace(/balloon([0-9])/, 'verified-balloon$1');
+    this.url_ = style['url'].replace(/balloon\./, 'verified-balloon.');
   } else if(this.cluster_.isBuzzed) { /* cluster url hack for buzzed cluster */
-    this.url_ = style['url'].replace(/balloon([0-9])/, 'buzzed-balloon$1');
+    this.url_ = style['url'].replace(/balloon\./, 'buzzed-balloon.');
   }
 };
 
