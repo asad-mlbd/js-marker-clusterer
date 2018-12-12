@@ -1217,6 +1217,12 @@ ClusterIcon.prototype.useStyle = function() {
   } else if(this.cluster_.isBuzzed) { /* cluster url hack for buzzed cluster */
     this.url_ = style['url'].replace(/balloon\./, 'buzzed-balloon.');
   }
+  
+  /* Cluster zIndex hack */  
+  if(style['zIndex']) {
+    this.zIndex_ = style['zIndex'];
+  }
+  
 };
 
 
@@ -1241,6 +1247,10 @@ ClusterIcon.prototype.createCss = function(pos) {
   style.push('background-image:url(' + this.url_ + ');');
   var backgroundPosition = this.backgroundPosition_ ? this.backgroundPosition_ : '0 0';
   style.push('background-position:' + backgroundPosition + ';');
+  
+  if(this.zIndex_) {
+    style.push('z-index:' + this.zIndex_ + ';');
+  }
 
   if (typeof this.anchor_ === 'object') {
     if (typeof this.anchor_[0] === 'number' && this.anchor_[0] > 0 &&
