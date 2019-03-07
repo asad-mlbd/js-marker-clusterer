@@ -858,9 +858,11 @@ Cluster.prototype.addMarker = function(marker) {
   }
 
   marker.isAdded = true;
-  this.markers_.push(marker);
-  this.isVarified = this.isVarified || /verified/.test(marker.icon);
-  this.isBuzzed = this.isBuzzed || /buzzed/.test(marker.icon);
+  this.markers_.push(marker);  
+
+  var markerIconUrl = typeof(marker.icon) === 'string' ? marker.icon : marker.icon.url;
+  this.isVarified = this.isVarified || /verified/.test(markerIconUrl);
+  this.isBuzzed = this.isBuzzed || /buzzed/.test(markerIconUrl);
 
 
   var len = this.markers_.length;
