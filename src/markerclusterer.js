@@ -1214,11 +1214,13 @@ ClusterIcon.prototype.useStyle = function() {
   this.iconAnchor_ = style['iconAnchor'];
 
 /* cluster url hack for verified cluster */
-  if(this.cluster_.isVarified) {
-    this.url_ = style['url'].replace(/balloon\./, 'verified-balloon.');
-  } else if(this.cluster_.isBuzzed) { /* cluster url hack for buzzed cluster */
-    this.url_ = style['url'].replace(/balloon\./, 'buzzed-balloon.');
-  }
+if(this.cluster_.isVarified) {
+  this.url_ = style['url'].replace(/balloon\./, 'verified-balloon.');
+  this.url_ = style['url'].replace(/balloon-anim\./, 'verified-balloon-anim.');
+} else if(this.cluster_.isBuzzed) { /* cluster url hack for buzzed cluster */
+  this.url_ = style['url'].replace(/balloon\./, 'buzzed-balloon.');
+  this.url_ = style['url'].replace(/balloon-anim\./, 'buzzed-balloon-anim.');
+}
   
   /* Cluster zIndex hack */  
   if(style['zIndex']) {
